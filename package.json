@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js --watch",
+    "dev": "nodemon ./src/index.js --watch './**/*.ts'",
     "start": "node index.js",
-    "build": "babel src --out-dir lib --copy-files --extensions '.ts,.js'"
+    "build": "babel src --out-dir lib --copy-files --extensions '.ts,.js'",
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,9 @@
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.30.0",
     "nodemon": "^2.0.9",
     "standard": "^16.0.3"
   }

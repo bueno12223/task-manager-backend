@@ -1,11 +1,15 @@
-import { Router } from "express";
+import express from "express";
 
 const task: any= (app: any) => {
-    const router: any = Router()
-    app.use(router, '/task')
+    const router: any = express.Router()
+    app.use('/task', router)
 
-    router.get('/')
-    router.post('/')
+    router.get('/', async(req: any, res: any) => {
+        res.status(200).send('hola')
+    })
+    router.post('/',  async(req: any, res: any) => {
+        res.status(200).send('hola')
+    })
     router.get('/count')
     router.get('/:id')
     router.put('/:id')
