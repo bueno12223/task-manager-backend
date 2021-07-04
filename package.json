@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
+    "dev": "nodemon ./src/index.js --watch",
     "start": "node index.js",
     "build": "babel src --out-dir lib --copy-files --extensions '.ts,.js'"
   },

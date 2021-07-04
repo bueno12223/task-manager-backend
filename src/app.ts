@@ -1,2 +1,6 @@
 import  express from 'express'
-console.log(new Date())
+
+
+const app: any = express()
+
+app.listen(3000).then(()=> console.log('Server on port 3000'))
