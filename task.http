@@ -1,3 +1,15 @@
 @api = http://localhost:3000/task
 
 GET {{api}}
+###
+GET {{api}}/1
+###
+GET {{api}}/count
+###
+POST {{api}}
+Content-Type:application/json
+
+{
+    "title": "task 3",
+    "descriptor": "guardar en git"
+}
