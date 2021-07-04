@@ -1,5 +1,6 @@
 import  express from 'express'
 import task from './routes/task'
+import './database'
 
 const app: any = express()
 task(app)
