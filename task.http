@@ -2,14 +2,25 @@
 
 GET {{api}}
 ###
-GET {{api}}/1
+GET {{api}}/10
 ###
 GET {{api}}/count
+
+###
+PUT {{api}}/10
+Content-Type: application/json
+
+{
+    "title": "ya no es una tarea"
+}
 ###
 POST {{api}}
 Content-Type:application/json
 
 {
     "title": "task 3",
-    "descriptor": "guardar en git"
+    "description": "guardar en git"
 }
+
+### 
+DELETE {{api}}/100

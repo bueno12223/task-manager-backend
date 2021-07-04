@@ -20,9 +20,8 @@ const task: any= (app: any) => {
         const {title, description} = req.body
         try {
             const db: any = await connect()
-            const result: any = await db.query('INSERT INTO task (title, description) VALUES (?, ?)', [title, description])
-            console.log(typeof result)
-            res.status(200).json(result) 
+            const [result] = await db.query('INSERT INTO tasks (title, description) VALUES (?, ?)', [title, description])
+            res.status(200).json({id: result.insertId ,...req.body}) 
         } catch (e) {
             console.error(e)
             res.status(400).json(e)
@@ -52,8 +51,28 @@ const task: any= (app: any) => {
         }
     })
     // edit a task
-    router.put('/:id')
+    router.put('/:id', async(req: any, res: any) => {
+        const {id} = req.params
+        try {
+            const db: any = await connect()
+            await db.query('UPDATE tasks SET ? WHERE id = ?', [req.body, id])
+            res.sendStatus(204)
+        } catch (e) {
+            console.error(e)
+            res.status(400).json(e)
+        }
+    })
     // delete a task
-    router.delete('/:id')
+    router.delete('/:id', async(req: any, res: any) => {
+        const {id} = req.params
+        try {
+            const db: any = await connect()
+            await db.query('DELETE FROM tasks WHERE id = ?', [id])
+            res.sendStatus(204)
+        } catch (e) {
+            console.error(e)
+            res.status(400).json(e)
+        }
+    })
 }
 export default task
