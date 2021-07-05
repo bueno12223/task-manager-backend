@@ -1,10 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express from 'express'
 import connect from '../database'
 
 const task: any= (app: any) => {
     const router: any = express.Router()
-    app.use('/task', router)
-    // get a task
+    app.use('/task', router)    
+    /**
+     * @swagger
+     * /tasks:
+     *  get:
+     *    summary: Get all Tasks
+     *    tags: [Tasks]
+     */
     router.get('/', async(req: any, res: any) => {
         try {
             const db: any = await connect()
@@ -15,7 +22,13 @@ const task: any= (app: any) => {
             res.status(400).json(e)
         }
     })
-    // create a task
+    /**
+     * @swagger
+     * /tasks:
+     *  post:
+     *    summary: save a new Task
+     *    tags: [Tasks]
+     */
     router.post('/',async(req: any, res: any) => {
         const {title, description} = req.body
         try {
@@ -27,7 +40,13 @@ const task: any= (app: any) => {
             res.status(400).json(e)
         }
     })
-    // count a task
+    /**
+     * @swagger
+     * /tasks/count:
+     *  get:
+     *    summary: get total tasks counter
+     *    tags: [Tasks]
+     */
     router.get('/count', async(req: any, res: any) => {
         try {
             const db: any = await connect()
@@ -38,7 +57,13 @@ const task: any= (app: any) => {
             res.status(400).json(e)
         }
     })
-    // get task by id
+    /**
+     * @swagger
+     * /tasks/{id}:
+     *  get:
+     *    summary: Get task by Id
+     *    tags: [Tasks]
+     */
     router.get('/:id', async(req: any, res: any) => {
         const {id} = req.params
         try {
@@ -50,7 +75,13 @@ const task: any= (app: any) => {
             res.status(400).json(e)
         }
     })
-    // edit a task
+    /**
+     * @swagger
+     * /tasks/{id}:
+     *  put:
+     *    summary: update a task by Id
+     *    tags: [Tasks]
+     */
     router.put('/:id', async(req: any, res: any) => {
         const {id} = req.params
         try {
@@ -62,7 +93,13 @@ const task: any= (app: any) => {
             res.status(400).json(e)
         }
     })
-    // delete a task
+    /**
+     * @swagger
+     * /tasks/{id}:
+     *  delete:
+     *    summary: delete a task by Id
+     *    tags: [Tasks]
+     */
     router.delete('/:id', async(req: any, res: any) => {
         const {id} = req.params
         try {
